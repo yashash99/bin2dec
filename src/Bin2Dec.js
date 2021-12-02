@@ -1,3 +1,4 @@
+import { Alert, Stack, TextField } from "@mui/material";
 import React from "react";
 
 class Bin2Dec extends React.Component {
@@ -45,24 +46,18 @@ class Bin2Dec extends React.Component {
         const binary = this.state.binary
         const message = this.state.message
         return (
-            <div>
-                <div>
-                    <label htmlFor="binaryInput" >Binary</label>
-                    <input id="binaryInput" type="text" value={binary} onChange={this.handleBinaryInput} />
-                </div>
-                <div>
-                    <label htmlFor="decimal">Decimal</label>
-                    <input id="decimal" type="text" value={decimal} readOnly />
-                </div>
+            <Stack spacing={2}>
+                <TextField label="Binary" id="binaryInput" type="text" value={binary} onChange={this.handleBinaryInput} />
+                <TextField label="Decimal" id="decimal" type="text" value={decimal} InputProps={{
+                    readOnly: true,
+                }} />
                 {message &&
-                    <div>message &nbsp;:&nbsp;
-                        <span>{message}</span>
-                    </div>
+
+                    <Alert severity="error">
+                        {message}
+                    </Alert>
                 }
-
-
-
-            </div>
+            </Stack>
         );
     }
 }
